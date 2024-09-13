@@ -1,0 +1,54 @@
+﻿@page "/Acerca de"
+@rendermode InteractiveServer
+
+<PageTitle>Acerca de</PageTitle>
+
+<h1>Acerca de</h1>
+
+
+
+
+<img src="images/yo.jpg" style="width:135px" alt="..." />
+<h4>Reyning Perdomo Feliz</h4>
+
+<p>Aquí estaré compartiendo mis datos para que me conozcan un poco más a profundidad🔍📊.</p>
+
+<ul>
+    @foreach (var link in Links)
+    {
+        <li>
+            <a href="@link.Url" target="_blank">@link.Titulo</a>
+        </li>
+    }
+</ul>
+
+
+@code {
+public class Link
+{
+    public string Titulo { get; set; }
+    public string? Url { get; set; } 
+}
+
+
+    List<Link> Links = new List<Link>
+    {
+        new Link { Titulo = "WhatsApp", Url = "https://wa.me/qr/MQUTIYO3RJRJH1" },
+        new Link { Titulo = "Telegram", Url = "http://T.me/Reyningfeliz" },
+        new Link { Titulo = "Instagram", Url = "https://www.instagram.com/perdomo__28f/profilecard/?igsh=MTFzaWJ6ZTZ1NTk3Nw==" },
+        new Link { Titulo = "Correo Electrónico", Url = "mailto:perdomoreyning@gmail.com" },
+    };
+    private void OpenUrl(string url)
+    {
+       
+        JS.InvokeVoidAsync("window.open", url, "_blank");
+    }
+
+    [Inject]
+    private IJSRuntime JS { get; set; }
+
+   
+}
+
+ <h4>A que me dedicaria:</h4>
+    <p>Segun lo que he cursado y lo que me falta por cursar me interesa mucho el apartado Web asi como a su vez el Backend y un poco el Frontend💻✨.</p>

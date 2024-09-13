@@ -1,0 +1,40 @@
+@page "/Aprende_mas"
+@rendermode InteractiveServer
+
+<PageTitle>Aprende Mas</PageTitle>
+
+<h1>Aprende Mas</h1>
+
+<p>En esta sección encontrarás contenido adicional para que puedas aprender más sobre Blazor WebAssembly📊🚀. </p>
+
+<div class="row"> 
+    @foreach (var video in Videos)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <img 
+                  src="@($"https://img.youtube.com/vi/{video.Url}/hqdefault.jpg")" class="card-img-top" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Video</h5>
+                    <p class="card-text">@video.Titulo</p>
+                    <a href="@($"https://www.youtube.com/watch?v={video.Url}")" target="_blank" class="btn btn-primary">Ver Video</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code{
+    class Video{
+        public string Titulo { get; set; }
+        public string Url { get; set; }
+    }
+
+    List<Video> Videos = new List<Video>{  
+        new Video{Titulo = "CRUD Blazor WebAssembly .NET8, este video nos enseña a crear un CRUD Básico con la tecnología de Blazor", Url = "stkr4IG2VrA"},
+        new Video{Titulo = "Blazor, Aquí vamos a indagar qué hay de nuevo en la tecnología de Blazor", Url = "hAFFyEUpQnA"},
+        new Video{Titulo = "Aplicaciones en Tiempo Real utilizando Blazor, en este video vamos a generar una aplicación en tiempo real con Blazor", Url = "svsDAIbi8bQ"},
+        new Video{Titulo = "¿QUÉ ES BLAZOR?, Definición de qué es, y si es posible que sea el nuevo Javascript de Microsoft", Url = "piNHZAMxVuk"},
+        new Video{Titulo = "¿Cómo se compara Blazor con ASP.NET MVC?, Comparación de estas dos tecnologías y de qué tratan", Url = "KwXtrNqd3kA"}
+     };
+}
