@@ -1,0 +1,46 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Practica1</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Inicio
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Aprende_mas">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Aprende Mas
+            </NavLink>
+        </div>
+
+       
+        <div class="nav-item px-3">
+            <NavLink class="nav-link d-flex align-items-center" href="Calculadora">
+                <i class="bi bi-calculator" aria-hidden="true" style="font-size: 1.5rem; margin-right: 5px; line-height: 1; transform: translateX(-2px);"></i> 
+                Calculadora
+            </NavLink>
+        </div>
+
+         <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Tabla">
+                <span class="bi bi-table" aria-hidden="true" style="font-size: 1.3rem; margin-bottom: 1.6rem; margin-right: 0.5rem;margin-left: -0.01rem;"></span> Tabla
+            </NavLink>
+        </div>
+
+
+        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Acerca de">
+                <span class="bi bi-file-person" aria-hidden="true" style="font-size: 1.5rem; margin-bottom: 1.6rem; margin-right: 0.5rem;margin-left: -0.0rem;"></span> Acerca de
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
