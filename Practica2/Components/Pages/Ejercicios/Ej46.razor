@@ -1,0 +1,88 @@
+@page "/ej/46"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 46</PageTitle>
+
+<h3><strong>Ejercicio 46</strong></h3>
+
+<h5><strong>Función que recibe una matriz 4x4 entera y retorna el número de la fila donde se encuentra por primera vez el número mayor.</strong></h5>
+
+<div class="form-group">
+    <label for="matrixInput">Ingrese los elementos de la matriz (4x4) separados por comas:</label>
+    <input type="text" @bind="matrixInput" class="form-control" id="matrixInput" placeholder="Ej:(16Numeros) 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="FindRowWithMax">Encontrar Fila del Mayor Número</button>
+</div>
+
+@if (result.HasValue)
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Número de Fila del Mayor Número:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@result.Value" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string matrixInput = string.Empty;
+    private int? result;
+    private string? ErrorMessage { get; set; }
+
+    private void FindRowWithMax()
+    {
+        ErrorMessage = null;
+        result = null;
+
+       
+        var numbers = matrixInput.Split(',')
+                                  .Select(n => n.Trim())
+                                  .Where(n => !string.IsNullOrEmpty(n))
+                                  .Select(n => 
+                                  {
+                                      int value;
+                                      return int.TryParse(n, out value) ? (int?)value : null;
+                                  })
+                                  .ToList();
+
+        if (numbers.Count == 16 && numbers.All(n => n.HasValue))
+        {
+            // Convertir a matriz 4x4
+            int[,] matrix = new int[4, 4];
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    matrix[i, j] = numbers[i * 4 + j].Value;
+                }
+            }
+
+            // Encontrar el mayor número y su primera fila
+            int maxValue = matrix[0, 0];
+            int maxRow = 0;
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (matrix[i, j] > maxValue)
+                    {
+                        maxValue = matrix[i, j];
+                        maxRow = i; // Guardar la fila del nuevo máximo
+                    }
+                }
+            }
+
+            result = maxRow + 1; // Devolver la fila como 1-indexed
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa exactamente 16 números enteros válidos separados por comas.";
+        }
+    }
+}

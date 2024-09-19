@@ -1,0 +1,58 @@
+@page "/ej/10"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+
+<PageTitle>Ejercicio 10</PageTitle>
+
+<h3><strong>Ejercicio 10</strong></h3>
+
+<h5><strong>Funcion que recibe un entero y retorna primer digito del mismo.</strong></h5>
+
+<div class="form-group">
+    <label for="numberInput">Ingresa un número entero:</label>
+    <input type="text" @bind="InputString" class="form-control" id="numberInput" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="ObtenerPrimerDigito">Obtener Primer Dígito</button>
+</div>
+
+@if (!string.IsNullOrEmpty(Resultado))
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Primer Dígito:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@Resultado" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string? InputString { get; set; }
+    private string? Resultado { get; set; }
+    private string? ErrorMessage { get; set; }
+
+    private void ObtenerPrimerDigito()
+    {
+        
+        ErrorMessage = null;
+        Resultado = null;
+
+        
+        if (long.TryParse(InputString, out long numero))
+        {
+            
+            string numeroComoTexto = Math.Abs(numero).ToString();
+
+            
+            Resultado = numeroComoTexto[0].ToString();
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa un número entero válido.";
+        }
+    }
+}

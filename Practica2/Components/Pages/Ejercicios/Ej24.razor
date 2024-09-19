@@ -1,0 +1,86 @@
+@page "/ej/24"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 24</PageTitle>
+
+<h3><strong>Ejercicio 24</strong></h3>
+
+<h5><strong>Función que recibe dos enteros de dos dígitos y retorna 1 si son inversos, 0 si no es así.</strong></h5>
+
+<div class="form-group">
+    <label for="firstNumberInput">Ingrese el primer número entero de dos dígitos:</label>
+    <input type="number" @bind="firstNumberInput" class="form-control" id="firstNumberInput" />
+</div>
+
+<div class="form-group">
+    <label for="secondNumberInput">Ingrese el segundo número entero de dos dígitos:</label>
+    <input type="number" @bind="secondNumberInput" class="form-control" id="secondNumberInput" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="CheckInverses">Verificar</button>
+</div>
+
+@if (result.HasValue)
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Resultado:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@result.Value" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private int? firstNumberInput;
+    private int? secondNumberInput;
+    private int? result;
+    private string? ErrorMessage { get; set; }
+
+    private void CheckInverses()
+    {
+        ErrorMessage = null;
+
+        if (firstNumberInput.HasValue && secondNumberInput.HasValue)
+        {
+            int firstNumber = firstNumberInput.Value;
+            int secondNumber = secondNumberInput.Value;
+
+            // Aqui Verificarmos si ambos números son de dos dígitos
+            if (IsTwoDigitNumber(firstNumber) && IsTwoDigitNumber(secondNumber))
+            {
+                // Obtenemos los dígitos individuales
+                int firstNumberTens = firstNumber / 10;
+                int firstNumberOnes = firstNumber % 10;
+                int secondNumberTens = secondNumber / 10;
+                int secondNumberOnes = secondNumber % 10;
+
+                // Verificamos si son inversos
+                if (firstNumberTens == secondNumberOnes && firstNumberOnes == secondNumberTens)
+                {
+                    result = 1;
+                }
+                else
+                {
+                    result = 0;
+                }
+            }
+            else
+            {
+                ErrorMessage = "Por favor, ingresa dos números enteros de dos dígitos.";
+            }
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa ambos números.";
+        }
+    }
+
+    private bool IsTwoDigitNumber(int number)
+    {
+        return number >= 10 && number <= 99;
+    }
+}

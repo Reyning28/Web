@@ -1,0 +1,88 @@
+@page "/ej/08"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 8</PageTitle>
+
+<h3><strong>Ejercicio 8</strong></h3>
+
+<h5><strong>Funcion que reciba un entero y retorne 1 si esta entre los 30 de Fibonacci 0 si no.</strong></h5>
+
+<div class="form-group">
+    <label for="numberInput">Ingresa un número entero:</label>
+    <input type="text" @bind="InputString" class="form-control" id="numberInput" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="ValidarFibonacci">Validar Fibonacci</button>
+</div>
+
+@if (!string.IsNullOrEmpty(Resultado))
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Resultado:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@Resultado" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string? InputString { get; set; }
+    private string? Resultado { get; set; }
+    private string? ErrorMessage { get; set; }
+
+    
+    private readonly List<int> Fibonacci = new List<int>();
+
+    protected override void OnInitialized()
+    {
+       
+        GenerarFibonacci();
+    }
+
+    private void GenerarFibonacci()
+    {
+        
+        int a = 0, b = 1;
+
+        Fibonacci.Add(a); // 0
+        Fibonacci.Add(b); // 1
+
+        for (int i = 2; i < 30; i++)
+        {
+            int c = a + b;
+            Fibonacci.Add(c);
+            a = b;
+            b = c;
+        }
+    }
+
+    private void ValidarFibonacci()
+    {
+        
+        ErrorMessage = null;
+        Resultado = null;
+
+        
+        if (int.TryParse(InputString, out int numero))
+        {
+            
+            if (Fibonacci.Contains(numero))
+            {
+                Resultado = "1"; 
+            }
+            else
+            {
+                Resultado = "0"; 
+            }
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa un número entero válido.";
+        }
+    }
+}
+

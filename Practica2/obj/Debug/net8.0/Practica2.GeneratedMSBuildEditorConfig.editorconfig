@@ -1,0 +1,167 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Practica2
+build_property.RootNamespace = Practica2
+build_property.ProjectDir = C:\Web\Practica2\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Web\Practica2
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Web/Practica2/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Layout/BackgroundStyle.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcQmFja2dyb3VuZFN0eWxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Acerca_De.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBY2VyY2FfRGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej02.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMDIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej04.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMDQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej06.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMDYucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej08.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMDgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej10.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMTAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej12.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMTIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej14.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMTQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej16.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMTYucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej18.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMTgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej20.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMjAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej22.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMjIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej24.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMjQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej26.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMjYucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej28.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMjgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej30.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMzAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej32.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMzIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej34.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMzQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej36.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMzYucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej38.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqMzgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej40.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqNDAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej42.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqNDIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej44.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqNDQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej46.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqNDYucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej48.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqNDgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Ejercicios/Ej50.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFamVyY2ljaW9zXEVqNTAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Pages/Weather.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/Practica2/Components/Layout/ItlaLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcSXRsYUxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-yqd6peuiii
+
+[C:/Web/Practica2/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-zf52g69zqv
+
+[C:/Web/Practica2/Components/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-1l7g4kxulg
+
+[C:/Web/Practica2/Components/Pages/Inicio.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xJbmljaW8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-wxtvhoh4pv

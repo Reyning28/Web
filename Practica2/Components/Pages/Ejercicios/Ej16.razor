@@ -1,0 +1,51 @@
+@page "/ej/16"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+
+<PageTitle>Ejercicio 16</PageTitle>
+
+<h3><strong>Ejercicio 16</strong></h3>
+
+<h5><strong>Funcion que recibe un entero y retorne 1 si esta en el ASCII 0 si no es asi.</strong></h5>
+
+<div class="form-group">
+    <label for="inputValue">Ingrese un entero:</label>
+    <input type="number" @bind="inputValue" class="form-control" id="inputValue" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="CheckAsciiValue">Verificar</button>
+</div>
+
+@if (result.HasValue)
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Resultado:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@result.Value" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private int inputValue;
+    private int? result;
+    private string? ErrorMessage { get; set; }
+
+    private void CheckAsciiValue()
+    {
+        ErrorMessage = null;
+
+        if (inputValue >= 0 && inputValue <= 127)
+        {
+            result = 1;
+        }
+        else
+        {
+            result = 0;
+        }
+    }
+}

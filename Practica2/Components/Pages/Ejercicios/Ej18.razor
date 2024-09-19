@@ -1,0 +1,54 @@
+@page "/ej/18"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 18</PageTitle>
+
+<h3><strong>Ejercicio 18</strong></h3>
+
+<h5><strong>Función que recibe un entero y retorna 1 si es factorial de alguno de los dígitos (0 al 9), 0 si no es así.</strong></h5>
+
+<div class="form-group">
+    <label for="inputValue">Ingrese un entero:</label>
+    <input type="number" @bind="inputValue" class="form-control" id="inputValue" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="CheckFactorial">Verificar</button>
+</div>
+
+@if (result.HasValue)
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Resultado:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@result.Value" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private int inputValue;
+    private int? result;
+    private string? ErrorMessage { get; set; }
+
+    private void CheckFactorial()
+    {
+        ErrorMessage = null;
+
+        // Aqui se Calcula los factoriales de 0 a 9
+        var factorials = new HashSet<int> { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880 };
+
+        // Aqui se Verifica si el valor ingresado es uno de esos factoriales
+        if (factorials.Contains(inputValue))
+        {
+            result = 1;
+        }
+        else
+        {
+            result = 0;
+        }
+    }
+}
