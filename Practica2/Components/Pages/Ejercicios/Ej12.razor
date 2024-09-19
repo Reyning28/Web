@@ -1,0 +1,68 @@
+@page "/ej/12"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 12</PageTitle>
+
+<h3><strong>Ejercicio 12</strong></h3>
+
+<h5><strong>Funcion que recibe un entero y un digito y retorne 1 si esta en el digito y 0 si no.</strong></h5>
+
+<div class="form-group">
+    <label for="numberInput">Ingresa un número entero:</label>
+    <input type="text" @bind="NumeroInput" class="form-control" id="numberInput" />
+</div>
+
+<div class="form-group">
+    <label for="digitInput">Ingresa un dígito:</label>
+    <input type="text" @bind="DigitoInput" class="form-control" id="digitInput" maxlength="1" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="VerificarDigitoEnNumero">Verificar Dígito</button>
+</div>
+
+@if (!string.IsNullOrEmpty(Resultado))
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Resultado:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@Resultado" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string? NumeroInput { get; set; }
+    private string? DigitoInput { get; set; }
+    private string? Resultado { get; set; }
+    private string? ErrorMessage { get; set; }
+
+    private void VerificarDigitoEnNumero()
+    {
+        
+        ErrorMessage = null;
+        Resultado = null;
+
+       
+        if (long.TryParse(NumeroInput, out long numero) && int.TryParse(DigitoInput, out int digito) && DigitoInput.Length == 1)
+        {
+    
+            string numeroComoTexto = Math.Abs(numero).ToString();
+            if (numeroComoTexto.Contains(DigitoInput))
+            {
+                Resultado = "1"; // El dígito está presente
+            }
+            else
+            {
+                Resultado = "0"; // El dígito no está presente
+            }
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa un número entero y un dígito válido.";
+        }
+    }
+}

@@ -1,0 +1,45 @@
+@inherits LayoutComponentBase
+@inject NavigationManager NavMan
+
+<div class="container">
+    <header class="border-bottom text-center py-4">
+        <a href="/" class="text-decoration-none text-white">
+            <h1 class="display-4 mb-2">TAREA 2</h1>
+            <h2 class="h4"><strong>Estas tareas de web son las que me correspondieron.</strong></h2>
+        </a>
+    </header>
+    <div id="divMain">
+        @Body
+    </div>
+    <footer class="border-top footer text-muted mt-4">
+        <div class="container text-center py-3">
+            &copy; 2024 - Itla Reyning Perdomo Feliz
+        </div>
+    </footer>
+</div>
+
+<style>
+    header {
+        background-color: rgb(36, 79, 143); /* Fondo semi-transparente para mejorar la legibilidad */
+    }
+    header h1, header h2 {
+        color: rgb(255, 255, 255);
+    }
+    header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+    header h2 {
+        font-size: 1.5rem;
+    }
+    .text-white {
+        color: rgb(255, 255, 255) !important;
+    }
+</style>
+
+@code {
+    void goToHome()
+    {
+        NavMan.NavigateTo("/");
+    }
+}

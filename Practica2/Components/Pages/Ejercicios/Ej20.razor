@@ -1,0 +1,53 @@
+@page "/ej/20"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 20</PageTitle>
+
+<h3><strong>Ejercicio 20</strong></h3>
+
+<h5><strong>Función que recibe un entero y retorna 1 si los valores son iguales, 0 si no es así.</strong></h5>
+
+<div class="form-group">
+    <label for="inputValue">Ingrese un entero:</label>
+    <input type="number" @bind="inputValue" class="form-control" id="inputValue" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="CheckEquality">Verificar</button>
+</div>
+
+@if (result.HasValue)
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Resultado:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@result.Value" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private int inputValue;
+    private int? result;
+    private string? ErrorMessage { get; set; }
+
+    private void CheckEquality()
+    {
+        ErrorMessage = null;
+
+        // Valor fijo para comparar
+        int fixedValue = 42; 
+
+        if (inputValue == fixedValue)
+        {
+            result = 1;
+        }
+        else
+        {
+            result = 0;
+        }
+    }
+}

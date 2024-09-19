@@ -1,0 +1,54 @@
+@page "/ej/06"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 6</PageTitle>
+
+<h3><strong>Ejercicio 6</strong></h3>
+
+<h5><strong>Funcion que reciba un eneto y retorne el paremetro en codigo ASCII.</strong></h5>
+
+<div class="form-group">
+    <label for="numberInput">Ingresa un número entero (0-127):</label>
+    <input type="text" @bind="InputString" class="form-control" id="numberInput" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="ConvertirACodigoAscii">Convertir a ASCII</button>
+</div>
+
+@if (!string.IsNullOrEmpty(Resultado))
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Carácter ASCII:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@Resultado" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string? InputString { get; set; }
+    private string? Resultado { get; set; }
+    private string? ErrorMessage { get; set; }
+
+    private void ConvertirACodigoAscii()
+    {
+        
+        ErrorMessage = null;
+        Resultado = null;
+
+        
+        if (int.TryParse(InputString, out int numero) && numero >= 0 && numero <= 127)
+        {
+           
+            Resultado = Convert.ToChar(numero).ToString();
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa un número válido entre 0 y 127.";
+        }
+    }
+}

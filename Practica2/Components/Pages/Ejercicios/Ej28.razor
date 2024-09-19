@@ -1,0 +1,81 @@
+@page "/ej/28"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 28</PageTitle>
+
+<h3><strong>Ejercicio 28</strong></h3>
+
+<h5><strong>Función que recibe un vector de 10 posiciones enteras y retorna la cantidad de números primos en el vector.</strong></h5>
+
+<div class="form-group">
+    <label for="vectorInput">Ingrese los 10 números enteros separados por comas:</label>
+    <input type="text" @bind="vectorInput" class="form-control" id="vectorInput" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="CountPrimes">Contar Primos</button>
+</div>
+
+@if (result.HasValue)
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Cantidad de Primos:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@result.Value" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string vectorInput = string.Empty;
+    private int? result;
+    private string? ErrorMessage { get; set; }
+
+    private void CountPrimes()
+    {
+        ErrorMessage = null;
+        result = null;
+
+       
+        var numbers = vectorInput.Split(',')
+                                  .Select(n => n.Trim())
+                                  .Where(n => !string.IsNullOrEmpty(n))
+                                  .Select(n => 
+                                  {
+                                      int value;
+                                      return int.TryParse(n, out value) ? (int?)value : null;
+                                  })
+                                  .ToList();
+
+        if (numbers.Count == 10 && numbers.All(n => n.HasValue))
+        {
+            // Contar números primos en el vector
+            result = numbers.Count(n => IsPrime(n.Value));// aqui me exploto, pero defini correctamente Isprime y que la lista number contenga valores enteros
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa exactamente 10 números enteros válidos separados por comas.";
+        }
+    }
+
+    private bool IsPrime(int number)
+    {
+        if (number <= 1)
+            return false;
+        if (number == 2)
+            return true;
+        if (number % 2 == 0)
+            return false;
+
+        for (int i = 3; i <= Math.Sqrt(number); i += 2)
+        {
+            if (number % i == 0)
+                return false;
+        }
+
+        return true;
+    }
+}

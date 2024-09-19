@@ -1,0 +1,89 @@
+@page "/ej/42"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 42</PageTitle>
+
+<h3><strong>Ejercicio 42</strong></h3>
+
+<h5><strong>Función que recibe una matriz 3x4 entera y retorna la cantidad de veces que se repite el mayor dato de la matriz.</strong></h5>
+
+<div class="form-group">
+    <label for="matrixInput">Ingrese los elementos de la matriz (3x4) separados por comas:</label>
+    <input type="text" @bind="matrixInput" class="form-control" id="matrixInput" placeholder="Ej:(12Numeros) 1,2,3,4,5,6,7,8,9,10,11,12" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="CountMaxOccurrences">Contar Repeticiones del Mayor Dato</button>
+</div>
+
+@if (result.HasValue)
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Cantidad de Repeticiones del Mayor Dato:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@result.Value" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string matrixInput = string.Empty;
+    private int? result;
+    private string? ErrorMessage { get; set; }
+
+    private void CountMaxOccurrences()
+    {
+        ErrorMessage = null;
+        result = null;
+
+       
+        var numbers = matrixInput.Split(',')
+                                  .Select(n => n.Trim())
+                                  .Where(n => !string.IsNullOrEmpty(n))
+                                  .Select(n => 
+                                  {
+                                      int value;
+                                      return int.TryParse(n, out value) ? (int?)value : null;
+                                  })
+                                  .ToList();
+
+        if (numbers.Count == 12 && numbers.All(n => n.HasValue))
+        {
+            // Convertir a matriz 3x4
+            int[,] matrix = new int[3, 4];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    matrix[i, j] = numbers[i * 4 + j].Value;
+                }
+            }
+
+            // Encontrar el mayor dato y contar sus repeticiones
+            int maxValue = matrix[0, 0];
+            int count = 0;
+
+            foreach (var item in matrix)
+            {
+                if (item > maxValue)
+                {
+                    maxValue = item;
+                    count = 1; // Reiniciar el contador
+                }
+                else if (item == maxValue)
+                {
+                    count++;
+                }
+            }
+
+            result = count;
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa exactamente 12 números enteros válidos separados por comas.";
+        }
+    }
+}

@@ -1,0 +1,91 @@
+@page "/ej/50"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 50</PageTitle>
+
+<h3><strong>Ejercicio 50</strong></h3>
+
+<h5><strong>Función que recibe una matriz 5x5 y retorna la cantidad de veces que se repite su moda.</strong></h5>
+
+<div class="form-group">
+    <label for="matrixInput">Ingrese los elementos de la matriz (5x5) separados por comas:</label>
+    <input type="text" @bind="matrixInput" class="form-control" id="matrixInput" placeholder="Ej:(25Numeros) 1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="CountModeOccurrences">Contar Repeticiones de la Moda</button>
+</div>
+
+@if (result.HasValue)
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Cantidad de Repeticiones de la Moda:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@result.Value" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string matrixInput = string.Empty;
+    private int? result;
+    private string? ErrorMessage { get; set; }
+
+    private void CountModeOccurrences()
+    {
+        ErrorMessage = null;
+        result = null;
+
+        // Intentar parsear la entrada
+        var numbers = matrixInput.Split(',')
+                                  .Select(n => n.Trim())
+                                  .Where(n => !string.IsNullOrEmpty(n))
+                                  .Select(n => 
+                                  {
+                                      int value;
+                                      return int.TryParse(n, out value) ? (int?)value : null;
+                                  })
+                                  .ToList();
+
+        if (numbers.Count == 25 && numbers.All(n => n.HasValue))
+        {
+            // Convertir a matriz 5x5
+            int[,] matrix = new int[5, 5];
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    matrix[i, j] = numbers[i * 5 + j].Value;
+                }
+            }
+
+            // Contar la frecuencia de cada número
+            var frequency = new Dictionary<int, int>();
+            foreach (var item in matrix)
+            {
+                if (frequency.ContainsKey(item))
+                {
+                    frequency[item]++;
+                }
+                else
+                {
+                    frequency[item] = 1;
+                }
+            }
+
+            // Encontrar la moda
+            int modeCount = 0;
+            int maxFrequency = frequency.Values.Max();
+
+            // Contar cuántas veces aparece la moda
+            result = frequency.Values.Count(f => f == maxFrequency);
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa exactamente 25 números enteros válidos separados por comas.";
+        }
+    }
+}

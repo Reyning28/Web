@@ -1,0 +1,54 @@
+@page "/ej/02"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 2</PageTitle>
+
+<h3><strong>Ejercicio 1</strong></h3>
+
+<h5><strong>Recibir un entero y retornar sus dos ultimos digitos.</strong></h5>
+
+<div class="form-group">
+    <label for="numberInput">Ingresa un número entero:</label>
+    <input type="text" @bind="InputString" class="form-control" id="numberInput" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="Calcular">Obtener dos últimos dígitos</button>
+</div>
+
+@if (!string.IsNullOrEmpty(LastTwoDigits))
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Resultado:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@LastTwoDigits" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string? InputString { get; set; }
+    private string? LastTwoDigits { get; set; }
+    private string? ErrorMessage { get; set; }
+
+    private void Calcular()
+    {
+        // Limpiar mensaje de error
+        ErrorMessage = null;
+
+        // Validar que la entrada sea un número entero
+        if (long.TryParse(InputString, out long number))
+        {
+            // Obtener los dos últimos dígitos
+            LastTwoDigits = (number % 100).ToString("D2");
+        }
+        else
+        {
+            LastTwoDigits = null;
+            ErrorMessage = "Por favor, ingresa un número entero válido.";
+        }
+    }
+}

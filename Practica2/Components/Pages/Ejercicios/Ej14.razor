@@ -1,0 +1,62 @@
+@page "/ej/14"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+
+<PageTitle>Ejercicio 14</PageTitle>
+
+<h3><strong>Ejercicio 14</strong></h3>
+
+<h5><strong>Funcion que reciba dos numero enteros y retorne el valor del mayor.</strong></h5>
+
+<div class="form-group">
+    <label for="firstNumberInput">Ingresa el primer número entero:</label>
+    <input type="text" @bind="PrimerNumeroInput" class="form-control" id="firstNumberInput" />
+</div>
+
+<div class="form-group">
+    <label for="secondNumberInput">Ingresa el segundo número entero:</label>
+    <input type="text" @bind="SegundoNumeroInput" class="form-control" id="secondNumberInput" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="CalcularMayor">Obtener el Mayor</button>
+</div>
+
+@if (!string.IsNullOrEmpty(Resultado))
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Resultado:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@Resultado" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string? PrimerNumeroInput { get; set; }
+    private string? SegundoNumeroInput { get; set; }
+    private string? Resultado { get; set; }
+    private string? ErrorMessage { get; set; }
+
+    private void CalcularMayor()
+    {
+     
+        ErrorMessage = null;
+        Resultado = null;
+
+        
+        if (int.TryParse(PrimerNumeroInput, out int primerNumero) && int.TryParse(SegundoNumeroInput, out int segundoNumero))
+        {
+       
+            int mayor = Math.Max(primerNumero, segundoNumero);
+            Resultado = mayor.ToString(); // Mostrar el número mayor
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa dos números enteros válidos.";
+        }
+    }
+}

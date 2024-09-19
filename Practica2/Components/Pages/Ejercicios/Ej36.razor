@@ -1,0 +1,67 @@
+@page "/ej/36"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 36</PageTitle>
+
+<h3><strong>Ejercicio 36</strong></h3>
+
+<h5><strong>Función que recibe como parámetro un entero y retorna ese elemento de la serie de Fibonacci.</strong></h5>
+
+<div class="form-group">
+    <label for="fibonacciInput">Ingrese un número entero:</label>
+    <input type="number" @bind="fibonacciInput" class="form-control" id="fibonacciInput" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="CalculateFibonacci">Calcular Fibonacci</button>
+</div>
+
+@if (result.HasValue)
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Fibonacci:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@result.Value" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private int fibonacciInput;
+    private int? result;
+    private string? ErrorMessage { get; set; }
+
+    private void CalculateFibonacci()
+    {
+        ErrorMessage = null;
+        result = null;
+
+        if (fibonacciInput < 0)
+        {
+            ErrorMessage = "Por favor, ingresa un número entero no negativo.";
+            return;
+        }
+
+        result = Fibonacci(fibonacciInput);
+    }
+
+    private int Fibonacci(int n)
+    {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+
+        int a = 0, b = 1, temp;
+
+        for (int i = 2; i <= n; i++)
+        {
+            temp = a + b;
+            a = b;
+            b = temp;
+        }
+
+        return b;
+    }
+}

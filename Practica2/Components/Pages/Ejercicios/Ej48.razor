@@ -1,0 +1,110 @@
+@page "/ej/48"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 48</PageTitle>
+
+<h3><strong>Ejercicio 48</strong></h3>
+
+<h5><strong>Función que recibe una matriz 4x4 entera y retorna la posición exacta del mayor número primo.</strong></h5>
+
+<div class="form-group">
+    <label for="matrixInput">Ingrese los elementos de la matriz (4x4) separados por comas:</label>
+    <input type="text" @bind="matrixInput" class="form-control" id="matrixInput" placeholder="Ej:(16Numeros) 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="FindMaxPrimePosition">Encontrar Posición del Mayor Primo</button>
+</div>
+
+@if (!string.IsNullOrEmpty(result))
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Posición del Mayor Primo:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@result" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string matrixInput = string.Empty;
+    private string result = string.Empty;
+    private string? ErrorMessage { get; set; }
+
+    private void FindMaxPrimePosition()
+    {
+        ErrorMessage = null;
+        result = string.Empty;
+
+        // Intentar parsear la entrada
+        var numbers = matrixInput.Split(',')
+                                  .Select(n => n.Trim())
+                                  .Where(n => !string.IsNullOrEmpty(n))
+                                  .Select(n => 
+                                  {
+                                      int value;
+                                      return int.TryParse(n, out value) ? (int?)value : null;
+                                  })
+                                  .ToList();
+
+        if (numbers.Count == 16 && numbers.All(n => n.HasValue))
+        {
+            // Aqui Convertirmos a matriz 4x4
+            int[,] matrix = new int[4, 4];
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    matrix[i, j] = numbers[i * 4 + j].Value;
+                }
+            }
+
+            // Encontrar el mayor número primo y su posición
+            int maxPrime = -1;
+            int rowPosition = -1;
+            int colPosition = -1;
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (IsPrime(matrix[i, j]))
+                    {
+                        if (matrix[i, j] > maxPrime)
+                        {
+                            maxPrime = matrix[i, j];
+                            rowPosition = i + 1; // Guardar la fila 
+                            colPosition = j + 1; // Guardar la columna 
+                        }
+                    }
+                }
+            }
+
+            if (maxPrime >= 0)
+            {
+                result = $"Fila: {rowPosition}, Columna: {colPosition}";
+            }
+            else
+            {
+                result = "No hay números primos en la matriz.";
+            }
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa exactamente 16 números enteros válidos separados por comas.";
+        }
+    }
+
+    private bool IsPrime(int number)
+    {
+        if (number <= 1) return false;
+        for (int i = 2; i <= Math.Sqrt(number); i++)
+        {
+            if (number % i == 0) return false;
+        }
+        return true;
+    }
+}

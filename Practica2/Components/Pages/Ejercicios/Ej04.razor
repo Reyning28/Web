@@ -1,0 +1,74 @@
+@page "/ej/04"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 4</PageTitle>
+
+<h3><strong>Ejercico 4</strong></h3>
+
+<h5><strong>Funcion que recibe numero enteros y retorna la cantidad de digitos pares.</strong></h5>
+
+<div class="form-group">
+    <label for="numberInput">Ingresa un número entero:</label>
+    <input type="text" @bind="InputString" class="form-control" id="numberInput" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="ContarDigitosPares">Contar dígitos pares</button>
+</div>
+
+@if (!string.IsNullOrEmpty(Resultado))
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Resultado:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@Resultado" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string? InputString { get; set; }
+    private string? Resultado { get; set; }
+    private string? ErrorMessage { get; set; }
+
+    private void ContarDigitosPares()
+    {
+        
+        ErrorMessage = null;
+        Resultado = null;
+
+        
+        if (long.TryParse(InputString, out long number))
+        {
+            
+            int contadorPares = ContarPares(number);
+            Resultado = contadorPares.ToString();
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa un número entero válido.";
+        }
+    }
+
+    private int ContarPares(long numero)
+    {
+        int cantidadPares = 0;
+
+        
+        string numeroComoTexto = Math.Abs(numero).ToString();
+
+       
+        foreach (char digito in numeroComoTexto)
+        {
+            if (int.TryParse(digito.ToString(), out int valorDigito) && valorDigito % 2 == 0)
+            {
+                cantidadPares++;
+            }
+        }
+
+        return cantidadPares;
+    }
+}

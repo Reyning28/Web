@@ -1,0 +1,77 @@
+@page "/ej/34"
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
+<PageTitle>Ejercicio 34</PageTitle>
+
+<h3><strong>Ejercicio 34</strong></h3>
+
+<h5><strong>Función que recibe un vector de 10 posiciones enteras y retorna la posición del número entero que tenga más dígitos.</strong></h5>
+
+<div class="form-group">
+    <label for="vectorInput">Ingrese los 10 números enteros separados por comas:</label>
+    <input type="text" @bind="vectorInput" class="form-control" id="vectorInput" placeholder="Ej: 12,345,67,8901,2345,678,89,0,12345,1" />
+</div>
+
+<div class="mx-auto mt-3">
+    <button class="btn btn-primary" @onclick="FindMaxDigitPosition">Encontrar Posición del Número con Más Dígitos</button>
+</div>
+
+@if (result.HasValue)
+{
+    <div class="form-group mt-2">  
+        <label for="resultOutput">Posición del Número con Más Dígitos:</label>
+        <input type="text" class="form-control" id="resultOutput" value="@result.Value" readonly />
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+@code {
+    private string vectorInput = string.Empty;
+    private int? result;
+    private string? ErrorMessage { get; set; }
+
+    private void FindMaxDigitPosition()
+    {
+        ErrorMessage = null;
+        result = null;
+
+       
+        var numbers = vectorInput.Split(',')
+                                  .Select(n => n.Trim())
+                                  .Where(n => !string.IsNullOrEmpty(n))
+                                  .Select(n => 
+                                  {
+                                      int value;
+                                      return int.TryParse(n, out value) ? (int?)value : null;
+                                  })
+                                  .ToList();
+
+        if (numbers.Count == 10 && numbers.All(n => n.HasValue))
+        {
+            // Encontrar la posición del número con más dígitos
+            int maxIndex = 0;
+            int maxDigits = numbers[0].Value.ToString().Length;
+
+            for (int i = 1; i < numbers.Count; i++)
+            {
+                int digitCount = numbers[i].Value.ToString().Length;
+
+                if (digitCount > maxDigits)
+                {
+                    maxDigits = digitCount;
+                    maxIndex = i;
+                }
+            }
+
+            result = maxIndex;
+        }
+        else
+        {
+            ErrorMessage = "Por favor, ingresa exactamente 10 números enteros válidos separados por comas.";
+        }
+    }
+}
