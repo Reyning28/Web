@@ -1,0 +1,84 @@
+@page "/registro/imprimir/{id:guid}"
+@inject IJSRuntime JSx  
+@using System.Text.Json
+@inject NavigationManager NavMan
+@rendermode InteractiveServer
+@layout PrintLayout
+
+<b><h3>Imprimir Registro</h3></b>
+
+<div>
+    @if (reporte != null)
+    {
+        <p><b>Fecha:</b> @reporte.Fecha.ToShortDateString()</p>
+        <p><b>Descripción:</b> @reporte.Descripcion</p>
+        <p><b>Costo Estimado:</b> <LabelDinero valor="@reporte.CostoEstimado"/></p>
+        <p><b>Muertos:</b> @reporte.Muertos</p>
+        <p><b>Heridos:</b> @reporte.Heridos</p>
+        <p><b>Vehículos Involucrados:</b> @reporte.VehiculosInvolucrados</p>
+    }
+    else
+    {
+        <p><b>No se encontró el registro.</b></p>
+    }
+</div>
+
+@code {
+    [Parameter] public Guid id { get; set; }
+
+    private Reporte reporte = null;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                // Obtenemos los registros del localStorage
+                var registrosJson = await JSx.InvokeAsync<string>("localStorage.getItem", "registros");
+
+                if (!string.IsNullOrEmpty(registrosJson))
+                {
+                    // Deserializamos la lista de registros
+                    var registros = JsonSerializer.Deserialize<List<Reporte>>(registrosJson);
+
+                    if (registros == null)
+                    {
+                        // Si no se puede deserializar la lista de registros
+                        await JSx.InvokeVoidAsync("alert", "No se encontraron registros válidos.");
+                        NavMan.NavigateTo("registro");
+                        return;
+                    }
+
+                    // Buscamos el registro que coincide con el id proporcionado
+                    reporte = registros.FirstOrDefault(r => r.Id == id);
+
+                    if (reporte == null)
+                    {
+                        // Si no se encuentra el registro, muestra la alerta
+                        await JSx.InvokeVoidAsync("alert", "No se encontró el registro.");
+                        NavMan.NavigateTo("registro");
+                        return;
+                    }
+
+                    // Forzamos la actualización de la interfaz
+                    StateHasChanged();
+                    await JSx.InvokeVoidAsync("window.print");
+
+                }
+                else
+                {
+                    // Si no hay ningún registro almacenado en el localStorage
+                    await JSx.InvokeVoidAsync("alert", "No se encontró ningún registro.");
+                    NavMan.NavigateTo("registro");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Captura cualquier excepción que pueda ocurrir, por ejemplo, si el id no es válido
+                await JSx.InvokeVoidAsync("alert", $"Ocurrió un error: {ex.Message}");
+                NavMan.NavigateTo("registro");
+            }
+        }
+    }
+}

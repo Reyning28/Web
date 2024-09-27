@@ -1,0 +1,85 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using System.Text.Json;
+
+<PageTitle>Estadísticas Generales</PageTitle>
+
+<h1>Estadísticas</h1>
+
+<h3>Esta es la página de Estadísticas</h3>
+
+<div class="container-fluid px-0">
+    <div class="row g-3"> 
+       
+        <div class="col-md-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Casos Registrados</h5>
+                    <p class="card-text display-4">@registros.Count</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <h5 class="card-title">Total de Vehículos</h5>
+                    <p class="card-text display-4">@registros.Sum(r => r.VehiculosInvolucrados)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card text-white bg-danger">
+                <div class="card-body">
+                    <h5 class="card-title">Total de Muertos</h5>
+                    <p class="card-text display-4">@registros.Sum(r => r.Muertos)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-3"> 
+        
+        <div class="col-md-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h5 class="card-title">Total de Heridos</h5>
+                    <p class="card-text display-4">@registros.Sum(r => r.Heridos)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Total de Costos Estimados</h5>
+                    <p class="card-text display-4"><LabelDinero valor="@registros.Sum(r => r.CostoEstimado)" /></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code{
+    List<Reporte> registros = new List<Reporte>();
+
+    [Inject] IJSRuntime JS { get; set; }  // Aseguramos que la inyección esté correcta
+
+    protected override async Task OnAfterRenderAsync( bool firstRender)
+    {
+        if(firstRender){
+        // Asegúrate de usar "localStorage" correctamente
+        var registroJson = await JS.InvokeAsync<string>("localStorage.getItem", "registros");
+
+        if (!string.IsNullOrEmpty(registroJson))
+        {
+            registros = JsonSerializer.Deserialize<List<Reporte>>(registroJson) ?? new List<Reporte>();
+
+            StateHasChanged(); 
+        }
+        }
+    }
+}
+
+
