@@ -1,0 +1,32 @@
+﻿@*2023-1110*@
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">1 parcial</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Inicio
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="registrar-tardanza">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Registrar Tardanza
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="listado-estudiante-tarde">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>Listado Tardanza
+            </NavLink>
+        </div>
+    </nav>
+</div>
+@*2023-1110*@
+
