@@ -1,0 +1,51 @@
+@*2023-1110*@
+@page "/registrar-tardanza"
+
+@inject EstudianteService estudianteService
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<h3>Registrar Nueva Tardanza</h3>
+
+<EditForm Model="@estudiante" OnValidSubmit="RegistrarTardanza">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="matricula" class="form-label">Matrícula</label>
+        <InputText id="matricula" class="form-control" @bind-Value="estudiante.Matricula" />
+    </div>
+
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <InputText id="nombre" class="form-control" @bind-Value="estudiante.Nombre" />
+    </div>
+
+    <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <InputText id="apellido" class="form-control" @bind-Value="estudiante.Apellido" />
+    </div>
+
+    <div class="mb-3">
+        <label for="curso" class="form-label">Curso</label>
+        <InputText id="curso" class="form-control" @bind-Value="estudiante.Curso" />
+    </div>
+
+    <div class="mb-3">
+        <label for="motivo" class="form-label">Motivo</label>
+        <InputText id="motivo" class="form-control" @bind-Value="estudiante.Motivo" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Registrar</button>
+</EditForm>
+
+@code {
+    private Estudiante estudiante = new Estudiante();
+
+    private void RegistrarTardanza()
+    {
+        estudianteService.RegistrarTardanza(estudiante);
+        NavigationManager.NavigateTo("/listado-estudiante-tarde");
+    }
+}
+@*2023-1110*@

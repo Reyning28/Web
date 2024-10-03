@@ -1,0 +1,54 @@
+@*2023-1110*@
+@page "/listado-estudiante-tarde"
+@inject EstudianteService estudianteservice
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+
+<h3>Lista de Estudaintes que llegaron Tarde.</h3>
+
+
+@if (estudianteservice.GetEstudiantesTarde().Count == 0)
+{
+    <p>No hay estudiantes registrados aun.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Matricula</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Curso</th>
+                <th>Motivo</th>
+                <th>Fecha y Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var estudiante in estudianteservice.GetEstudiantesTarde())
+            {
+                <tr>
+                    <td>@estudiante.Matricula</td>
+                    <td>@estudiante.Nombre</td>
+                    <td>@estudiante.Apellido</td>
+                    <td>@estudiante.Curso</td>
+                    <td>@estudiante.Motivo</td>
+                    <td>@estudiante.FechaHoraTardanza.ToString("dd/MM/yyyy HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<button @onclick="IrAlFormulario" class="btn btn-primary">Registrar Nueva Tardanza</button>
+
+
+@code
+{
+    private void IrAlFormulario()
+    {
+        NavigationManager.NavigateTo("/registrar-tardanza");
+    }
+}
+@*2023-1110*@
