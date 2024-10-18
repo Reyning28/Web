@@ -1,0 +1,150 @@
+@page "/personajes"
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext _context
+@rendermode InteractiveServer
+
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Registro de Personajes</h3>
+
+    @if (registroExitoso)
+    {
+        <div class="alert alert-success" role="alert">
+            ¡Personaje @(esEdicion ? "actualizado" : "registrado") con éxito!
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-header">
+            <h5>Registrar Nuevo Personaje</h5>
+        </div>
+        <div class="card-body">
+            <EditForm Model="@nuevoPersonaje" OnValidSubmit="esEdicion ? ActualizarPersonaje : RegistrarPersonaje" FormName="personajeForm">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <InputText id="nombre" class="form-control" @bind-Value="nuevoPersonaje.Nombre" placeholder="Ingrese el nombre" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="alias" class="form-label">Alias (Opcional)</label>
+                    <InputText id="alias" class="form-control" @bind-Value="nuevoPersonaje.Alias" placeholder="Alias del personaje" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="rol" class="form-label">Rol en el Juego</label>
+                    <InputText id="rol" class="form-control" @bind-Value="nuevoPersonaje.Rol" placeholder="Protagonista, Villano, etc." />
+                </div>
+
+                <div class="mb-3">
+                    <label for="habilidad" class="form-label">Habilidad Especial</label>
+                    <InputText id="habilidad" class="form-control" @bind-Value="nuevoPersonaje.HabilidadEspecial" placeholder="Ingrese la habilidad especial" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="arma" class="form-label">Arma Favorita</label>
+                    <InputText id="arma" class="form-control" @bind-Value="nuevoPersonaje.ArmaFavorita" placeholder="Ingrese el arma favorita" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="nivelPoder" class="form-label">Nivel de Poder</label>
+                    <InputNumber id="nivelPoder" class="form-control" @bind-Value="nuevoPersonaje.NivelPoder" min="1" max="100" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="imagen" class="form-label">Imagen del Personaje (URL)</label>
+                    <InputText id="imagen" class="form-control" @bind-Value="nuevoPersonaje.Imagen" placeholder="URL de la imagen del personaje" />
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100"> Registrar Personaje</button>
+            </EditForm>
+        </div>
+    </div>
+
+    <h5 class="mt-4">Personajes Registrados</h5>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Alias</th>
+                    <th>Rol</th>
+                    <th>Habilidad Especial</th>
+                    <th>Arma Favorita</th>
+                    <th>Nivel de Poder</th>
+                    <th>Imagen</th> <!-- Nueva columna para la imagen -->
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var personaje in personajes)
+                {
+                    <tr>
+                        <td>@personaje.Nombre</td>
+                        <td>@personaje.Alias</td>
+                        <td>@personaje.Rol</td>
+                        <td>@personaje.HabilidadEspecial</td>
+                        <td>@personaje.ArmaFavorita</td>
+                        <td>@personaje.NivelPoder</td>
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(personaje.Imagen))
+                            {
+                                <img src="@personaje.Imagen" alt="@personaje.Nombre" style="max-width: 50px; max-height: 50px;" />
+                            }
+                            else
+                            {
+                                <span>No disponible</span>
+                            }
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-sm" @onclick="() => EditarPersonaje(personaje)">
+                                Editar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    private Personaje nuevoPersonaje = new Personaje();
+    private List<Personaje> personajes; // Lista para almacenar personajes registrados
+    private bool registroExitoso = false; // Variable para controlar el mensaje de éxito
+    private bool esEdicion = false; // Controla si estamos en modo de edición
+
+    protected override async Task OnInitializedAsync()
+    {
+        personajes = await _context.Personajes.ToListAsync(); // Cargar personajes al iniciar
+    }
+
+    private async Task RegistrarPersonaje()
+    {
+        _context.Personajes.Add(nuevoPersonaje);
+        await _context.SaveChangesAsync();
+        await CargarPersonajes(); // Actualizar la lista de personajes
+        nuevoPersonaje = new Personaje(); // Limpiar formulario después de guardar
+        registroExitoso = true; // Cambiar a verdadero para mostrar el mensaje
+        esEdicion = false; // Asegurarse de que no estamos en modo de edición
+    }
+
+    private async Task ActualizarPersonaje()
+    {
+        _context.Personajes.Update(nuevoPersonaje);
+        await _context.SaveChangesAsync();
+        await CargarPersonajes(); // Actualizar la lista de personajes
+        nuevoPersonaje = new Personaje(); // Limpiar formulario después de actualizar
+        registroExitoso = true; // Cambiar a verdadero para mostrar el mensaje
+        esEdicion = false; // Cambiar a modo de registro
+    }
+
+    private void EditarPersonaje(Personaje personaje)
+    {
+        nuevoPersonaje = personaje; // Cargar el personaje seleccionado en el formulario
+        esEdicion = true; // Cambiar a modo de edición
+    }
+
+    private async Task CargarPersonajes()
+    {
+        personajes = await _context.Personajes.ToListAsync(); // Actualizar la lista de personajes
+    }
+}

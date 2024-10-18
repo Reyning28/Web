@@ -1,0 +1,80 @@
+@page "/plataformas"
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext _context
+@rendermode InteractiveServer
+
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Gestión de Plataformas</h3>
+
+    @if (registroExitoso)
+    {
+        <div class="alert alert-success" role="alert">
+            ¡Plataforma registrada con éxito!
+        </div>
+    }
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Agregar Nueva Plataforma</h5>
+        </div>
+        <div class="card-body">
+            <EditForm Model="@nuevaPlataforma" OnValidSubmit="AgregarPlataforma">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre de la Plataforma</label>
+                    <InputText id="nombre" class="form-control" @bind-Value="nuevaPlataforma.Nombre" placeholder="Ingrese el nombre" />
+                </div>
+                <div class="form-check mb-3">
+                    <InputCheckbox id="activa" class="form-check-input" @bind-Value="nuevaPlataforma.Activa" />
+                    <label class="form-check-label" for="activa">¿Plataforma Activa?</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Agregar Plataforma</button>
+            </EditForm>
+        </div>
+    </div>
+
+    <h5 class="mb-3">Plataformas Registradas</h5>
+    <div class="list-group">
+        @foreach (var plataforma in plataformas)
+        {
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>@plataforma.Nombre</strong> - 
+                    <span class="badge @(plataforma.Activa ? "bg-success" : "bg-secondary")">
+                        @(plataforma.Activa ? "Activa" : "Inactiva")
+                    </span>
+                </div>
+                <button class="btn btn-outline-info btn-sm" @onclick="() => CambiarEstado(plataforma.Id)">
+                    Cambiar Estado
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private Plataforma nuevaPlataforma = new Plataforma();
+    private List<Plataforma> plataformas;
+    private bool registroExitoso = false; // Variable para controlar el mensaje de éxito
+
+    protected override async Task OnInitializedAsync()
+    {
+        plataformas = await _context.Plataformas.ToListAsync();
+    }
+
+    private async Task AgregarPlataforma()
+    {
+        _context.Plataformas.Add(nuevaPlataforma);
+        await _context.SaveChangesAsync();
+        plataformas = await _context.Plataformas.ToListAsync();
+        nuevaPlataforma = new Plataforma(); // Limpiar el formulario después de guardar
+        registroExitoso = true; // Cambiar a verdadero para mostrar el mensaje
+    }
+
+    private async Task CambiarEstado(int id)
+    {
+        var plataforma = await _context.Plataformas.FindAsync(id);
+        plataforma.Activa = !plataforma.Activa;
+        await _context.SaveChangesAsync();
+        plataformas = await _context.Plataformas.ToListAsync();
+    }
+}

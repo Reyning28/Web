@@ -1,0 +1,56 @@
+﻿@page "/"
+
+<h1>🎯 Registro de Videojuegos y Personajes</h1>
+
+<h2>Objetivo</h2>
+<p>El objetivo de esta práctica es aplicar conceptos clave de comunicación entre componentes, enrutamiento, manejo de formularios y validación en Blazor, así como integrar Entity Framework Core para la persistencia de datos. Los estudiantes desarrollarán una aplicación que permita registrar videojuegos, sus plataformas asociadas y los personajes que los habitan.</p>
+
+<h2>📋 Instrucciones:</h2>
+
+<h3>1️⃣ Registro de Videojuegos usando SQLite:</h3>
+<p>Crea una página para registrar videojuegos con los siguientes campos:</p>
+<ul>
+    <li>Nombre (texto).</li>
+    <li>Desarrollador (texto).</li>
+    <li>Plataforma (campo de selección - Select).</li>
+    <li>Género (texto, ejemplo: Aventura, Acción, Rol).</li>
+    <li>Fecha de lanzamiento (fecha).</li>
+    <li>Imagen de portada (URL para la portada del videojuego).</li>
+    <li>Descripción (área de texto para describir el videojuego).</li>
+</ul>
+
+<h3>2️⃣ Gestión de Plataformas (CRUD):</h3>
+<p>Crea una página donde puedas gestionar plataformas de videojuegos, con los siguientes campos:</p>
+<ul>
+    <li>Nombre de la plataforma (texto, ejemplo: PC, PS5, Xbox).</li>
+    <li>Estado: Se debe poder activar o desactivar la plataforma.</li>
+</ul>
+<p>Implementa un CRUD completo para las plataformas, permitiendo:</p>
+<ul>
+    <li>Crear nuevas plataformas.</li>
+    <li>Editar plataformas existentes.</li>
+    <li>Cambiar el estado de las plataformas (activas o inactivas).</li>
+</ul>
+
+<h3>3️⃣ Registro de Personajes de Videojuego:</h3>
+<p>Crea una página para registrar personajes asociados a un videojuego, con los siguientes campos:</p>
+<ul>
+    <li>Nombre (texto).</li>
+    <li>Alias (texto, opcional).</li>
+    <li>Rol en el juego (texto, ejemplo: Protagonista, Villano, Secundario).</li>
+    <li>Habilidad especial (texto, opcional).</li>
+    <li>Arma favorita (texto, opcional).</li>
+    <li>Nivel de poder (número, del 1 al 100).</li>
+    <li>Imagen del personaje (URL de una imagen del personaje).</li>
+</ul>
+
+<h3>4️⃣ Enrutamiento y Navegación:</h3>
+<p>Implementa el enrutamiento en Blazor para permitir la navegación entre las páginas de:</p>
+<ul>
+    <li>Registro de Videojuegos.</li>
+    <li>Gestión de Plataformas.</li>
+    <li>Registro de Personajes.</li>
+</ul>
+
+<h3>5️⃣ Persistencia de Datos con Entity Framework Core:</h3>
+<p>Implementa Entity Framework Core para la persistencia de datos. Crea modelos para Videojuegos, Personajes de Videojuego y Plataformas, con las correspondientes relaciones entre ellos. Implementa las migraciones necesarias y asegúrate de que los datos se guarden en una base de datos SQLite. Desarrolla las operaciones CRUD (Crear, Leer, Actualizar, Borrar) para gestionar tanto los videojuegos como los personajes y las plataformas.</p>

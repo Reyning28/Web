@@ -1,0 +1,155 @@
+@page "/videojuegos"
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext _context
+@rendermode InteractiveServer
+
+<div class="container mt-4">
+    <h3 class="text-primary text-center">Registro de Videojuegos</h3>
+
+    @if (registroExitoso)
+    {
+        <div class="alert alert-success" role="alert">
+            ¡Videojuego @(esEdicion ? "actualizado" : "registrado") con éxito!
+        </div>
+    }
+
+    <EditForm Model="@nuevoVideojuego" OnValidSubmit="esEdicion ? ActualizarVideojuego : RegistrarVideojuego" class="mt-4">
+        <DataAnnotationsValidator />
+        <ValidationSummary class="alert alert-danger" />
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <InputText id="nombre" class="form-control" @bind-Value="nuevoVideojuego.Nombre" placeholder="Nombre" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="desarrollador" class="form-label">Desarrollador</label>
+                <InputText id="desarrollador" class="form-control" @bind-Value="nuevoVideojuego.Desarrollador" placeholder="Desarrollador" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="plataforma" class="form-label">Plataforma</label>
+                <InputSelect id="plataforma" class="form-select" @bind-Value="nuevoVideojuego.Plataforma">
+                    @foreach (var plataforma in _context.Plataformas)
+                    {
+                        <option value="@plataforma.Nombre">@plataforma.Nombre</option>
+                    }
+                </InputSelect>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="genero" class="form-label">Género</label>
+                <InputText id="genero" class="form-control" @bind-Value="nuevoVideojuego.Genero" placeholder="Género" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="fechaLanzamiento" class="form-label">Fecha de Lanzamiento</label>
+                <InputDate id="fechaLanzamiento" class="form-control" @bind-Value="nuevoVideojuego.FechaLanzamiento" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="imagenPortada" class="form-label">Imagen de la Portada (URL)</label>
+                <InputText id="imagenPortada" class="form-control" @bind-Value="nuevoVideojuego.ImagenPortada" placeholder="URL de la imagen" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <InputTextArea id="descripcion" class="form-control" @bind-Value="nuevoVideojuego.Descripcion" placeholder="Descripción" rows="3" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Registrar</button>
+    </EditForm>
+
+    <h5 class="mt-4">Videojuegos Registrados</h5>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Desarrollador</th>
+                    <th>Plataforma</th>
+                    <th>Género</th>
+                    <th>Fecha de Lanzamiento</th>
+                    <th>Imagen</th> <!-- Nueva columna para la imagen -->
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var videojuego in videojuegos)
+                {
+                    <tr>
+                        <td>@videojuego.Nombre</td>
+                        <td>@videojuego.Desarrollador</td>
+                        <td>@videojuego.Plataforma</td>
+                        <td>@videojuego.Genero</td>
+                        <td>@videojuego.FechaLanzamiento.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(videojuego.ImagenPortada))
+                            {
+                                <img src="@videojuego.ImagenPortada" alt=" @videojuego.Nombre" style="max-width: 50px; max-height: 50px;" />
+                            }
+                            else
+                            {
+                                <span>No disponible</span>
+                            }
+                        </td> 
+                        <td>
+                            <button class="btn btn-success btn-sm" @onclick="() => EditarVideojuego(videojuego)">
+                                Editar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    private Videojuego nuevoVideojuego = new Videojuego();
+    private List<Videojuego> videojuegos;
+    private bool registroExitoso = false; // Variable para controlar el mensaje de éxito
+    private bool esEdicion = false; // Controla si estamos en modo de edición
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarVideojuegos(); // Cargar videojuegos al iniciar
+    }
+
+    private async Task RegistrarVideojuego()
+    {
+        _context.Videojuegos.Add(nuevoVideojuego);
+        await _context.SaveChangesAsync();
+        await CargarVideojuegos(); // Actualizar la lista de videojuegos
+        nuevoVideojuego = new Videojuego(); // Limpiar formulario después de guardar
+        registroExitoso = true; // Cambiar a verdadero para mostrar el mensaje
+        esEdicion = false; // Asegurarse de que no estamos en modo de edición
+    }
+
+    private async Task ActualizarVideojuego()
+    {
+        _context.Videojuegos.Update(nuevoVideojuego);
+        await _context.SaveChangesAsync();
+        await CargarVideojuegos(); // Actualizar la lista de videojuegos
+        nuevoVideojuego = new Videojuego(); // Limpiar formulario después de actualizar
+        registroExitoso = true; // Cambiar a verdadero para mostrar el mensaje
+        esEdicion = false; // Cambiar a modo de registro
+    }
+
+    private void EditarVideojuego(Videojuego videojuego)
+    {
+        nuevoVideojuego = videojuego; // Cargar el videojuego seleccionado en el formulario
+        esEdicion = true; // Cambiar a modo de edición
+    }
+
+    private async Task CargarVideojuegos()
+    {
+        videojuegos = await _context.Videojuegos.ToListAsync(); // Actualizar la lista de videojuegos
+    }
+}
