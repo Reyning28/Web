@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Web\\2parcial\\2parcial\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\2parcial.bundle.scp.css",
+      "PackagePath": "staticwebassets\\2parcial.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Web\\2parcial\\2parcial\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Web\\2parcial\\2parcial\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Web\\2parcial\\2parcial\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Web\\2parcial\\2parcial\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.2parcial.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.2parcial.props",
+      "PackagePath": "build\\2parcial.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.2parcial.props",
+      "PackagePath": "buildMultiTargeting\\2parcial.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.2parcial.props",
+      "PackagePath": "buildTransitive\\2parcial.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,45 @@
+@page "/visitas"
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext db
+@rendermode InteractiveServer
+
+<h3>Listado de Visitas</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Teléfono</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (visitas != null && visitas.Any())
+        {
+            @foreach (var visita in visitas)
+            {
+                <tr>
+                    <td>@visita.Telefono</td>
+                    <td>@visita.Nombre</td>
+                    <td>@visita.Apellido</td>
+                    <td>@visita.Correo</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">No hay visitas registradas</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Visita> visitas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        visitas = await db.Visitas.ToListAsync();
+    }
+}

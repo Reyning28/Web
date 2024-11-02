@@ -1,0 +1,44 @@
+@page "/registro"
+@inject AppDbContext db
+@inject NavigationManager navigationManager
+@rendermode InteractiveServer
+
+<h3>Registro de Visitas</h3>
+<EditForm Model="@visita" OnValidSubmit="RegistrarVisita">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Teléfono</label>
+        <InputText @bind-Value="visita.Telefono" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Nombre</label>
+        <InputText @bind-Value="visita.Nombre" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Apellido</label>
+        <InputText @bind-Value="visita.Apellido" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Correo Electrónico</label>
+        <InputText @bind-Value="visita.Correo" type="email" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Agregar Visita</button>
+</EditForm>
+
+@code {
+    private Visita visita = new Visita();
+
+    private async Task RegistrarVisita()
+    {
+        db.Visitas.Add(visita);
+        await db.SaveChangesAsync();
+        visita = new Visita(); // Limpiar formulario después de guardar
+        navigationManager.NavigateTo("/visitas"); // Redirigir a la página de visitas
+    }
+}
