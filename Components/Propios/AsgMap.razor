@@ -1,0 +1,115 @@
+@inject IJSRuntime JSRuntime
+@rendermode InteractiveServer
+
+<PageTitle>Mapa de Detenidos</PageTitle>
+
+<div class="map-container">
+    <div id="map" style="height: 400px; width: 100%;"></div>
+</div>
+
+<HeadContent>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</HeadContent>
+
+@code {
+    [Parameter]
+    public List<Detenido> Detenidos { get; set; } = new List<Detenido>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                await Task.Delay(100); // Pequeña espera para asegurar que el DOM está listo
+                await JSRuntime.InvokeVoidAsync("iniciarMapa", Detenidos);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al inicializar el mapa: {ex.Message}");
+            }
+        }
+    }
+}
+
+<style>
+    .map-container {
+        padding: 1rem;
+        background: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #map {
+        min-height: 400px;
+        width: 100%;
+        z-index: 1;
+    }
+</style>
+<script>
+    window.iniciarMapa = function (detenidos) {
+        // Verificar que el contenedor del mapa existe
+        const mapContainer = document.getElementById('map');
+        if (!mapContainer) {
+            console.error('Contenedor del mapa no encontrado');
+            return;
+        }
+        
+
+        // Verificar que Leaflet está disponible
+        if (typeof L === 'undefined') {
+            console.error('Leaflet no está cargado');
+            return;
+        }
+
+        try {
+            // Inicializar el mapa
+            const map = L.map('map').setView([18.763868428625525, -70.4937039177377], 8);
+
+            // Agregar la capa de tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
+
+            // Agregar marcadores
+            if (detenidos && detenidos.length > 0) {
+                console.log('Agregando marcadores:', detenidos.length);
+                const bounds = L.latLngBounds();
+
+                detenidos.forEach(detenido => {
+                    if (detenido.latitud && detenido.longitud) {
+                        const marker = L.marker([detenido.latitud, detenido.longitud])
+                            .addTo(map)
+                            .bindPopup(`
+                            <b>Nombre:</b> ${detenido.Nombre}<br>
+                            <b>Apellido:</b> ${detenido.Apellido}<br>
+                            <b>NumeroPasaporte:</b> ${detenido.NumeroPasaporte}<br>
+                            <b>Latitud:</b> ${detenido.Latitud} <br>
+                            <b>Longitud :</b> ${detenido.Longitud} <br>
+                            `);
+
+                        bounds.extend([detenido.latitud, detenido.longitud]);
+                    }
+                });
+
+                // Ajustar la vista para mostrar todos los marcadores
+                if (!bounds.isEmpty()) {
+                    map.fitBounds(bounds);
+                }
+            }
+
+            // Invalidar el tamaño del mapa para forzar un redibujado
+            setTimeout(() => {
+                map.invalidateSize();
+            }, 100);
+
+        } catch (error) {
+            console.error('Error al inicializar el mapa:', error);
+        }
+        
+    }
+</script>

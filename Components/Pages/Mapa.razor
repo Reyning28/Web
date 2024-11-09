@@ -1,0 +1,30 @@
+@page "/mapa"
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext db
+@rendermode InteractiveServer
+
+<div class="container-fluid">
+    <h3>Mapa de Detenidos</h3>
+    <div class="row">
+        <div class="col">
+            <AsgMap Detenidos="detenidos" />
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<Detenido> detenidos = new List<Detenido>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        detenidos = await db.Detenidos
+        .Where(d => d.Latitud != 0 && d.Longitud != 0)
+        .ToListAsync();
+
+        Console.WriteLine($"Detenidos cargados: {detenidos.Count}");
+        foreach (var d in detenidos)
+        {
+            Console.WriteLine($"Detenido: {d.Nombre}, Lat: {d.Latitud}, Lng: {d.Longitud}");
+        }
+    }
+}
