@@ -1,0 +1,153 @@
+﻿@page "/"
+@page "/mantenimiento"
+@rendermode InteractiveServer
+@inject AppDbContext db
+
+<PageTitle>Mantenimiento</PageTitle>
+
+<h1>Mantenimiento de Detenciones</h1>
+
+@if (modo == Modo.Lista)
+{
+    <h3>Listado de Detenciones</h3>
+    <div class="text-end">
+        <button class="btn btn-primary" @onclick="() => modo = Modo.Editar">Agregar</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Pasaporte</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detenido in detenidos)
+            {
+                <tr>
+                    <td>@detenido.FechaDetencion</td>
+                    <td>@detenido.Nombre</td>
+                    <td>@detenido.Apellido</td>
+                    <td>@detenido.NumeroPasaporte</td>
+                    <td>@detenido.FechaNacimiento.ToShortDateString()</td>
+                    <td>@detenido.Latitud</td>
+                    <td>@detenido.Longitud</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="() => EditarDetenido(detenido)">Editar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (modo == Modo.Editar)
+{
+    <EditForm Model="@detenido" OnValidSubmit="GuardarDetenido">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="FechaDetencion">Fecha de Detención</label>
+            <InputDate id="FechaDetencion" @bind-Value="@detenido.FechaDetencion" class="form-control" />
+            <ValidationMessage For="@(() => detenido.FechaDetencion)" />
+        </div>
+
+        <div class="form-group">
+            <label for="Nombre">Nombre</label>
+            <InputText id="Nombre" @bind-Value="@detenido.Nombre" class="form-control" />
+            <ValidationMessage For="@(() => detenido.Nombre)" />
+        </div>
+
+        <div class="form-group">
+            <label for="Apellido">Apellido</label>
+            <InputText id="Apellido" @bind-Value="@detenido.Apellido" class="form-control" />
+            <ValidationMessage For="@(() => detenido.Apellido)" />
+        </div>
+
+        <div class="form-group">
+            <label for="NumeroPasaporte">Número de Pasaporte</label>
+            <InputText id="NumeroPasaporte" @bind-Value="@detenido.NumeroPasaporte" class="form-control" />
+            <ValidationMessage For="@(() => detenido.NumeroPasaporte)" />
+        </div>
+
+        <div class="form-group">
+            <label for="FechaNacimiento">Fecha de Nacimiento</label>
+            <InputDate id="FechaNacimiento" @bind-Value="@detenido.FechaNacimiento" class="form-control" />
+            <ValidationMessage For="@(() => detenido.FechaNacimiento)" />
+        </div>
+
+        <div class="form-group">
+            <label for="Latitud">Latitud</label>
+            <InputNumber id="Latitud" @bind-Value="@detenido.Latitud" class="form-control" />
+            <ValidationMessage For="@(() => detenido.Latitud)" />
+        </div>
+
+        <div class="form-group">
+            <label for="Longitud">Longitud</label>
+            <InputNumber id="Longitud" @bind-Value="@detenido.Longitud" class="form-control" />
+            <ValidationMessage For="@(() => detenido.Longitud)" />
+        </div>
+
+        <button class="btn btn-success" type="submit">Guardar</button>
+    </EditForm>
+}
+
+@code {
+    enum Modo
+    {
+        Lista,
+        Editar
+    }
+
+    Modo modo = Modo.Lista;
+
+    List<Detenido> detenidos = new List<Detenido>();
+
+    Detenido detenido = new Detenido();
+
+    protected override void OnInitialized()
+    {
+        detenidos = db.Detenidos.ToList();
+    }
+
+    void GuardarDetenido()
+    {
+        try
+        {
+            if (detenido != null)
+            {
+                if (detenido.Id != 0)
+                {
+                    db.Detenidos.Update(detenido);
+                }
+                else
+                {
+                    db.Detenidos.Add(detenido);
+                }
+                db.SaveChanges();
+
+                detenidos = db.Detenidos.ToList();
+
+                detenido = new Detenido();
+                modo = Modo.Lista;
+
+                InvokeAsync(StateHasChanged);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al guardar el detenido: " + ex.Message);
+        }
+    }
+
+    void EditarDetenido(Detenido detenido)
+    {
+        this.detenido = detenido;
+        modo = Modo.Editar;
+    }
+}
