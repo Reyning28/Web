@@ -1,0 +1,37 @@
+@page "/register"
+@inject NavigationManager Navigation
+@inject UserService userService
+@rendermode InteractiveServer
+
+
+
+<h3>Crear Cuenta</h3>
+
+<EditForm Model="newUser" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="usuario" class="form-control" @bind-Value="newUser.Usuario" placeholder="Nombre de usuario" />
+    <InputText id="correo" class="form-control" @bind-Value="newUser.Correo" placeholder="Correo electrónico" />
+    <InputText id="clave" class="form-control" @bind-Value="newUser.Clave" placeholder="Contraseña" type="password" />
+
+
+    <button type="submit" class="btn btn-primary">Crear cuenta</button>
+</EditForm>
+
+@code {
+    private User newUser = new User();
+    private async Task HandleValidSubmit()
+    {
+        var exists = await userService.CheckIfUserExists(newUser.Usuario, newUser.Correo);
+        if (exists)
+        {
+            // Mostrar mensaje de error si ya existe
+        }
+        else
+        {
+            await userService.RegisterUser(newUser);
+            Navigation.NavigateTo("/login");
+        }
+    }
+}

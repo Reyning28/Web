@@ -1,0 +1,36 @@
+@page "/login"
+@inject NavigationManager Navigation
+@inject UserService userService
+@rendermode InteractiveServer
+
+
+
+<h3>Iniciar sesión</h3>
+
+<EditForm Model="loginUser" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="usuario" class="form-control" @bind-Value="loginUser.Usuario" placeholder="Nombre de usuario" />
+    <InputText id="clave" class="form-control" @bind-Value="loginUser.Clave" placeholder="Contraseña" type="password" />
+
+
+    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+</EditForm>
+
+@code {
+    private User loginUser = new User();
+    private async Task HandleLogin()
+    {
+        var user = await userService.Login(loginUser.Usuario, loginUser.Clave);
+        if (user != null)
+        {
+            // Guardar el usuario logueado en sessionStorage o localStorage
+            Navigation.NavigateTo("/home");
+        }
+        else
+        {
+            // Mostrar mensaje de error
+        }
+    }
+}

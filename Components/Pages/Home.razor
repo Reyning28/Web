@@ -1,0 +1,122 @@
+﻿@page "/"
+@page "/home"
+@inject VivenciaService vivenciaService
+@rendermode InteractiveServer
+
+<h3>Mis Vivencias</h3>
+
+<EditForm Model="newVivencia" OnValidSubmit="HandleVivenciaSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="titulo" class="form-control" @bind-Value="newVivencia.Titulo" placeholder="Título de la vivencia" />
+    <InputTextArea id="descripcion" class="form-control" @bind-Value="newVivencia.Descripcion" placeholder="Descripción" />
+    <InputDate id="fecha" class="form-control" @bind-Value="newVivencia.Fecha" />
+
+    <InputFile OnChange="HandleFileSelected" />
+
+    <button type="submit" class="btn btn-primary">Guardar Vivencia</button>
+</EditForm>
+
+<hr />
+
+<h4>Mis Vivencias Registradas</h4>
+@if (userVivencias?.Any() == true)
+{
+    <div class="row">
+        @foreach (var vivencia in userVivencias)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="@(!string.IsNullOrEmpty(vivencia.Imagen) ? vivencia.Imagen : "/images/default-user.jpg")" class="card-img-top" alt="Foto de vivencia" />
+                    <div class="card-body">
+                        <h5 class="card-title">@vivencia.Titulo</h5>
+                        <p class="card-text">@vivencia.Descripcion</p>
+                        <p class="card-text"><small class="text-muted">@vivencia.Fecha.ToString("dd/MM/yyyy")</small></p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No tienes vivencias registradas.</p>
+}
+
+<hr />
+
+<h4>Botón de Pánico 🚨</h4>
+<EditForm Model="peligro" OnValidSubmit="HandlePanicButton">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="clave" class="form-control" @bind-Value="peligro.Clave" placeholder="Ingresa tu clave para confirmar" type="password" />
+    <button type="submit" class="btn btn-danger mt-2">Eliminar Todas Mis Vivencias</button>
+</EditForm>
+
+@code {
+    private Vivencia newVivencia = new Vivencia();
+    private List<Vivencia> userVivencias = new List<Vivencia>();
+    private Peligro peligro = new Peligro();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Cargar las vivencias del usuario al iniciar
+        int userId = 1; // Reemplaza con lógica para obtener el ID del usuario autenticado
+        userVivencias = await vivenciaService.GetVivenciasByUser(userId);
+    }
+
+    private async Task HandleVivenciaSubmit()
+    {
+        // Asigna un UsuarioId válido si no está asignado
+        if (newVivencia.UsuarioId <= 0)
+        {
+            newVivencia.UsuarioId = 1; // Cambia "1" por un ID existente en tu base de datos
+        }
+
+        await vivenciaService.SaveVivencia(newVivencia);
+        Console.WriteLine("Vivencia guardada correctamente.");
+
+        // Actualizar la lista de vivencias del usuario
+        userVivencias = await vivenciaService.GetVivenciasByUser(newVivencia.UsuarioId);
+    }
+
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+    var file = e.File;
+    var filePath = Path.Combine("wwwroot/images/default-user.jpg", file.Name);
+
+    using (var stream = new FileStream(filePath, FileMode.Create))
+    {
+        await file.OpenReadStream().CopyToAsync(stream);
+    }
+
+    newVivencia.Imagen = file.Name; // Solo el nombre para guardarlo en la base de datos
+}
+
+   private async Task HandlePanicButton()
+{
+    int userId = 1; // Cambia por el ID del usuario autenticado
+    Console.WriteLine($"Clave ingresada: {peligro.Clave}");
+
+    bool claveValida = await vivenciaService.ValidateUserPassword(userId, peligro.Clave);
+
+    if (claveValida)
+    {
+        await vivenciaService.DeleteAllVivenciasByUser(userId);
+        Console.WriteLine("Todas las vivencias eliminadas.");
+        userVivencias.Clear(); // Limpiar la lista local
+    }
+    else
+    {
+        Console.WriteLine("Clave incorrecta.");
+    }
+}
+
+
+    private class Peligro
+    {
+        public string? Clave { get; set; }
+    }
+}

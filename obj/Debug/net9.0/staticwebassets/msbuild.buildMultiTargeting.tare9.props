@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\tare9.props" />
+</Project>
