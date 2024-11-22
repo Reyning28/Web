@@ -1,0 +1,57 @@
+@page "/acerca"
+
+
+<h3 class="text-center">Acerca de </h3>
+
+<div class="text-center mb-4">
+    <img src="images/yo.jpg" class="rounded-circle" style="width:135px; height: 135px;" alt="Foto de Reyning" />
+</div>
+
+<h4 class="text-center">Reyning Perdomo Feliz</h4>
+
+<p class="text-center ">Aquí estaré compartiendo mis datos para que me conozcan un poco más a fondo 🔍📊</p>
+
+<div class="text-center">
+    <p><strong>Nombre:</strong> Reyning Perdomo Feliz</p>
+    <p><strong>Matrícula:</strong> 2023-1110</p>
+    <p><strong>Asignatura:</strong> Programación Web</p>
+</div>
+
+<h4 class="my-4 text-center">A qué me dedicaría:</h4>
+<p class="text-center">Según lo que he cursado y lo que me falta por cursar, me interesa mucho el área Web, así como
+    también el Backend y un poco el Frontend 💻✨.</p>
+
+<h4 class="my-4 text-center text-success">Enlaces de Contacto:</h4>
+
+<div class="text-center">
+    <ul class="list-inline">
+        @foreach (var link in Links)
+        {
+            <li class="list-inline-item">
+                <a href="@link.Url" target="_blank" class="btn btn-outline-success btn-sm" style="margin: 5px;">
+                    @link.Titulo
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+
+@code {
+    public class Link
+    {
+        public string? Titulo { get; set; }
+        public string? Url { get; set; }
+    }
+
+    List<Link> Links = new List<Link>
+{
+new Link { Titulo = "WhatsApp", Url = "https://wa.me/qr/MQUTIYO3RJRJH1" },
+new Link { Titulo = "Telegram", Url = "http://T.me/SuperBat04" },
+new Link { Titulo = "Instagram", Url = "https://www.instagram.com/perdomo__28f/profilecard/?igsh=MTFzaWJ6ZTZ1NTk3Nw=="
+},
+new Link { Titulo = "Correo Electrónico", Url = "mailto:perdomoreyning@gmail.com" },
+};
+
+    [Inject]
+    private IJSRuntime? JS { get; set; }
+}

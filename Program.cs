@@ -2,8 +2,12 @@ using tare9.Components;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using tare9.Data;
+using Blazored.LocalStorage;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
 
 // Agregar servicios al contenedor.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -15,6 +19,8 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddScoped<VivenciaService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddBlazoredLocalStorage();
+
 
 
 

@@ -24,9 +24,9 @@
     private async Task HandleValidSubmit()
     {
         var exists = await userService.CheckIfUserExists(newUser.Usuario, newUser.Correo);
-        if (exists)
+        if (exists)// verificacion si  el ususario existe. Si existe no le permitira registrarse nuevamente, de lo contrario podra acceder.
         {
-            // Mostrar mensaje de error si ya existe
+            
         }
         else
         {

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OUB4NQKB2lVIf6vKkPBML1NML/ysaDff0NWkZQpYczM=",
+  "Hash": "7985vlY4GsIF11SwQ/1qjehiTLTPjynvq46o+THuH7s=",
   "Source": "tare9",
   "BasePath": "_content/tare9",
   "Mode": "Default",
@@ -2684,6 +2684,48 @@
       "OriginalItemSpec": "wwwroot\\favicon.png"
     },
     {
+      "Identity": "C:\\Web\\tare9\\wwwroot\\images\\5b31d817-ba98-4945-8b20-abc058386365_aw_dark_head_1920x1080_hd_screenfill_2021.jpeg",
+      "SourceId": "tare9",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Web\\tare9\\wwwroot\\",
+      "BasePath": "_content/tare9",
+      "RelativePath": "images/5b31d817-ba98-4945-8b20-abc058386365_aw_dark_head_1920x1080_hd_screenfill_2021#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "jleoqlxrcn",
+      "Integrity": "GQIrXIDpZHHOlELrkHkFEVM24f4B+sT3lSXus59QoBw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\5b31d817-ba98-4945-8b20-abc058386365_aw_dark_head_1920x1080_hd_screenfill_2021.jpeg"
+    },
+    {
+      "Identity": "C:\\Web\\tare9\\wwwroot\\images\\db77ef36-1e32-4653-8e01-5cd4ed181aa5_luffy-scar-one-piece-4k-wallpaper-uhdpaper.com-264@3@a.jpg",
+      "SourceId": "tare9",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Web\\tare9\\wwwroot\\",
+      "BasePath": "_content/tare9",
+      "RelativePath": "images/db77ef36-1e32-4653-8e01-5cd4ed181aa5_luffy-scar-one-piece-4k-wallpaper-uhdpaper.com-264@3@a#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5ipweew5fc",
+      "Integrity": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\db77ef36-1e32-4653-8e01-5cd4ed181aa5_luffy-scar-one-piece-4k-wallpaper-uhdpaper.com-264@3@a.jpg"
+    },
+    {
       "Identity": "C:\\Web\\tare9\\wwwroot\\images\\default-user.jpg",
       "SourceId": "tare9",
       "SourceType": "Discovered",
@@ -2703,6 +2745,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\default-user.jpg"
+    },
+    {
+      "Identity": "C:\\Web\\tare9\\wwwroot\\images\\yo.jpg",
+      "SourceId": "tare9",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Web\\tare9\\wwwroot\\",
+      "BasePath": "_content/tare9",
+      "RelativePath": "images/yo#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "809ax1h98r",
+      "Integrity": "GAGkKPJ0tOk9oTBf9KJ9Vn+UMJ9s9hQTf1h7vp+zvnY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\yo.jpg"
     },
     {
       "Identity": "C:\\Web\\tare9\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
@@ -10927,6 +10990,170 @@
       ]
     },
     {
+      "Route": "images/5b31d817-ba98-4945-8b20-abc058386365_aw_dark_head_1920x1080_hd_screenfill_2021.jleoqlxrcn.jpeg",
+      "AssetFile": "C:\\Web\\tare9\\wwwroot\\images\\5b31d817-ba98-4945-8b20-abc058386365_aw_dark_head_1920x1080_hd_screenfill_2021.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "187833"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GQIrXIDpZHHOlELrkHkFEVM24f4B+sT3lSXus59QoBw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 22 Nov 2024 02:28:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jleoqlxrcn"
+        },
+        {
+          "Name": "label",
+          "Value": "images/5b31d817-ba98-4945-8b20-abc058386365_aw_dark_head_1920x1080_hd_screenfill_2021.jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-GQIrXIDpZHHOlELrkHkFEVM24f4B+sT3lSXus59QoBw="
+        }
+      ]
+    },
+    {
+      "Route": "images/5b31d817-ba98-4945-8b20-abc058386365_aw_dark_head_1920x1080_hd_screenfill_2021.jpeg",
+      "AssetFile": "C:\\Web\\tare9\\wwwroot\\images\\5b31d817-ba98-4945-8b20-abc058386365_aw_dark_head_1920x1080_hd_screenfill_2021.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "187833"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GQIrXIDpZHHOlELrkHkFEVM24f4B+sT3lSXus59QoBw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 22 Nov 2024 02:28:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GQIrXIDpZHHOlELrkHkFEVM24f4B+sT3lSXus59QoBw="
+        }
+      ]
+    },
+    {
+      "Route": "images/db77ef36-1e32-4653-8e01-5cd4ed181aa5_luffy-scar-one-piece-4k-wallpaper-uhdpaper.com-264@3@a.5ipweew5fc.jpg",
+      "AssetFile": "C:\\Web\\tare9\\wwwroot\\images\\db77ef36-1e32-4653-8e01-5cd4ed181aa5_luffy-scar-one-piece-4k-wallpaper-uhdpaper.com-264@3@a.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 22 Nov 2024 02:28:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ipweew5fc"
+        },
+        {
+          "Name": "label",
+          "Value": "images/db77ef36-1e32-4653-8e01-5cd4ed181aa5_luffy-scar-one-piece-4k-wallpaper-uhdpaper.com-264@3@a.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "images/db77ef36-1e32-4653-8e01-5cd4ed181aa5_luffy-scar-one-piece-4k-wallpaper-uhdpaper.com-264@3@a.jpg",
+      "AssetFile": "C:\\Web\\tare9\\wwwroot\\images\\db77ef36-1e32-4653-8e01-5cd4ed181aa5_luffy-scar-one-piece-4k-wallpaper-uhdpaper.com-264@3@a.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 22 Nov 2024 02:28:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
       "Route": "images/default-user.809ax1h98r.jpg",
       "AssetFile": "C:\\Web\\tare9\\wwwroot\\images\\default-user.jpg",
       "Selectors": [],
@@ -10974,6 +11201,88 @@
     {
       "Route": "images/default-user.jpg",
       "AssetFile": "C:\\Web\\tare9\\wwwroot\\images\\default-user.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "494701"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GAGkKPJ0tOk9oTBf9KJ9Vn+UMJ9s9hQTf1h7vp+zvnY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 13 Nov 2024 21:20:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GAGkKPJ0tOk9oTBf9KJ9Vn+UMJ9s9hQTf1h7vp+zvnY="
+        }
+      ]
+    },
+    {
+      "Route": "images/yo.809ax1h98r.jpg",
+      "AssetFile": "C:\\Web\\tare9\\wwwroot\\images\\yo.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "494701"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GAGkKPJ0tOk9oTBf9KJ9Vn+UMJ9s9hQTf1h7vp+zvnY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 13 Nov 2024 21:20:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "809ax1h98r"
+        },
+        {
+          "Name": "label",
+          "Value": "images/yo.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-GAGkKPJ0tOk9oTBf9KJ9Vn+UMJ9s9hQTf1h7vp+zvnY="
+        }
+      ]
+    },
+    {
+      "Route": "images/yo.jpg",
+      "AssetFile": "C:\\Web\\tare9\\wwwroot\\images\\yo.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -24145,7 +24454,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24206,7 +24515,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24251,7 +24560,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24306,7 +24615,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24367,7 +24676,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24412,7 +24721,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24467,7 +24776,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24520,7 +24829,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24557,7 +24866,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24604,7 +24913,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24657,7 +24966,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24694,7 +25003,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 21:53:35 GMT"
+          "Value": "Thu, 21 Nov 2024 19:42:13 GMT"
         },
         {
           "Name": "Cache-Control",

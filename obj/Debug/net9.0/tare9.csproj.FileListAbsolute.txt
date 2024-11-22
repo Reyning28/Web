@@ -1,3 +1,10 @@
+C:\Web\tare9\obj\Debug\net9.0\tare9.csproj.AssemblyReference.cache
+C:\Web\tare9\obj\Debug\net9.0\tare9.GeneratedMSBuildEditorConfig.editorconfig
+C:\Web\tare9\obj\Debug\net9.0\tare9.AssemblyInfoInputs.cache
+C:\Web\tare9\obj\Debug\net9.0\tare9.AssemblyInfo.cs
+C:\Web\tare9\obj\Debug\net9.0\tare9.csproj.CoreCompileInputs.cache
+C:\Web\tare9\obj\Debug\net9.0\tare9.MvcApplicationPartsAssemblyInfo.cache
+C:\Web\tare9\obj\Debug\net9.0\tare9.sourcelink.json
 C:\Web\tare9\bin\Debug\net9.0\appsettings.Development.json
 C:\Web\tare9\bin\Debug\net9.0\appsettings.json
 C:\Web\tare9\bin\Debug\net9.0\tare9.staticwebassets.runtime.json
@@ -7,6 +14,7 @@ C:\Web\tare9\bin\Debug\net9.0\tare9.deps.json
 C:\Web\tare9\bin\Debug\net9.0\tare9.runtimeconfig.json
 C:\Web\tare9\bin\Debug\net9.0\tare9.dll
 C:\Web\tare9\bin\Debug\net9.0\tare9.pdb
+C:\Web\tare9\bin\Debug\net9.0\Blazored.LocalStorage.dll
 C:\Web\tare9\bin\Debug\net9.0\Blazorise.dll
 C:\Web\tare9\bin\Debug\net9.0\Blazorise.Licensing.dll
 C:\Web\tare9\bin\Debug\net9.0\Humanizer.dll
@@ -121,13 +129,6 @@ C:\Web\tare9\bin\Debug\net9.0\runtimes\win-arm\native\e_sqlite3.dll
 C:\Web\tare9\bin\Debug\net9.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Web\tare9\bin\Debug\net9.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Web\tare9\bin\Debug\net9.0\runtimes\win-x86\native\e_sqlite3.dll
-C:\Web\tare9\obj\Debug\net9.0\tare9.csproj.AssemblyReference.cache
-C:\Web\tare9\obj\Debug\net9.0\tare9.GeneratedMSBuildEditorConfig.editorconfig
-C:\Web\tare9\obj\Debug\net9.0\tare9.AssemblyInfoInputs.cache
-C:\Web\tare9\obj\Debug\net9.0\tare9.AssemblyInfo.cs
-C:\Web\tare9\obj\Debug\net9.0\tare9.csproj.CoreCompileInputs.cache
-C:\Web\tare9\obj\Debug\net9.0\tare9.MvcApplicationPartsAssemblyInfo.cache
-C:\Web\tare9\obj\Debug\net9.0\tare9.sourcelink.json
 C:\Web\tare9\obj\Debug\net9.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
 C:\Web\tare9\obj\Debug\net9.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 C:\Web\tare9\obj\Debug\net9.0\scopedcss\bundle\tare9.styles.css
@@ -215,6 +216,8 @@ C:\Web\tare9\obj\Debug\net9.0\compressed\hvabss0ovr-notf2xhcfb.gz
 C:\Web\tare9\obj\Debug\net9.0\compressed\9v3dw380o6-h1s4sie4z3.gz
 C:\Web\tare9\obj\Debug\net9.0\compressed\i49641fjqg-63fj8s7r0e.gz
 C:\Web\tare9\obj\Debug\net9.0\compressed\dt7zwksf92-0j3bgjxly4.gz
+C:\Web\tare9\obj\Debug\net9.0\compressed\osyz6e4zj3-8i0s8zamax.gz
+C:\Web\tare9\obj\Debug\net9.0\compressed\e49z950dpk-8i0s8zamax.gz
 C:\Web\tare9\obj\Debug\net9.0\staticwebassets.build.json
 C:\Web\tare9\obj\Debug\net9.0\staticwebassets.development.json
 C:\Web\tare9\obj\Debug\net9.0\staticwebassets.build.endpoints.json
@@ -230,5 +233,3 @@ C:\Web\tare9\obj\Debug\net9.0\refint\tare9.dll
 C:\Web\tare9\obj\Debug\net9.0\tare9.pdb
 C:\Web\tare9\obj\Debug\net9.0\tare9.genruntimeconfig.cache
 C:\Web\tare9\obj\Debug\net9.0\ref\tare9.dll
-C:\Web\tare9\obj\Debug\net9.0\compressed\osyz6e4zj3-8i0s8zamax.gz
-C:\Web\tare9\obj\Debug\net9.0\compressed\e49z950dpk-8i0s8zamax.gz

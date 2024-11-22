@@ -13,8 +13,20 @@
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
+      "Id": "C:\\Web\\tare9\\wwwroot\\images\\5b31d817-ba98-4945-8b20-abc058386365_aw_dark_head_1920x1080_hd_screenfill_2021.jpeg",
+      "PackagePath": "staticwebassets\\images\\5b31d817-ba98-4945-8b20-abc058386365_aw_dark_head_1920x1080_hd_screenfill_2021.jpeg"
+    },
+    {
+      "Id": "C:\\Web\\tare9\\wwwroot\\images\\db77ef36-1e32-4653-8e01-5cd4ed181aa5_luffy-scar-one-piece-4k-wallpaper-uhdpaper.com-264@3@a.jpg",
+      "PackagePath": "staticwebassets\\images\\db77ef36-1e32-4653-8e01-5cd4ed181aa5_luffy-scar-one-piece-4k-wallpaper-uhdpaper.com-264@3@a.jpg"
+    },
+    {
       "Id": "C:\\Web\\tare9\\wwwroot\\images\\default-user.jpg",
       "PackagePath": "staticwebassets\\images\\default-user.jpg"
+    },
+    {
+      "Id": "C:\\Web\\tare9\\wwwroot\\images\\yo.jpg",
+      "PackagePath": "staticwebassets\\images\\yo.jpg"
     },
     {
       "Id": "C:\\Web\\tare9\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

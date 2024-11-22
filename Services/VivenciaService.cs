@@ -32,7 +32,7 @@ namespace tare9.Data
             if (user == null)
                 return false;
 
-            return user.Clave == clave; // Validación simple; considera encriptar la clave en producción.
+            return user.Clave == clave; 
         }
 
         // Eliminar todas las vivencias del usuario
