@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorin App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>COLORIN</h1>
+    <form id="colorForm">
+        <div id="inputs">
+            <script>
+                for (let i = 0; i < 20; i++) {
+                    document.write('<input type="text" class="color-input" maxlength="5">');
+                    if ((i + 1) % 5 === 0) document.write('<br>');
+                }
+            </script>
+        </div>
+        <p>
+            Cantidad de Rojos: <span id="redCount">0</span> 
+            Cantidad de Verdes: <span id="greenCount">0</span> 
+            Cantidad de Azules: <span id="blueCount">0</span>
+        </p>
+        <button type="button" id="saveButton">Guardar</button>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
